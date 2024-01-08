@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import RootRecoil from '@/components/RootRecoil';
 import Container from '@/components/Container';
+import Accessiblity from '@/components/Accessiblity';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -23,6 +24,7 @@ export default function RootLayout({
           <Container>
             {children}
           </Container>
+          <Accessiblity />
         </RootRecoil>
       </body>
     </html>
