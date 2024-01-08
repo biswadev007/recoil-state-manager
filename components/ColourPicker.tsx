@@ -1,11 +1,14 @@
 'use client';
 import React, { useState, ChangeEvent } from 'react';
 import reactCSS from 'reactcss';
-import { SketchPicker, Color, ColorResult } from 'react-color';
+import { SketchPicker, ColorResult } from 'react-color';
 
 const Sketch: React.FC<{
-  color: { r: string, g: string, b: string, a: string };
-  handleChange: (color: ColorResult, event: ChangeEvent<HTMLInputElement>)=> void;
+  color: { r: string; g: string; b: string; a: string };
+  handleChange: (
+    color: ColorResult,
+    event: ChangeEvent<HTMLInputElement>
+  ) => void;
 }> = ({ color, handleChange }) => {
   const [displayColorPicker, setDisplayColorPicker] = useState(false);
 
@@ -27,14 +30,14 @@ const Sketch: React.FC<{
       popover: {
         position: 'absolute',
         zIndex: '2',
-      },
+      } as React.CSSProperties,
       cover: {
         position: 'fixed',
         top: '0px',
         right: '0px',
         bottom: '0px',
         left: '0px',
-      },
+      } as React.CSSProperties,
     },
   });
   const handleClick = () => {
@@ -45,7 +48,6 @@ const Sketch: React.FC<{
     setDisplayColorPicker(false);
   };
 
-
   return (
     <div>
       <div style={styles.swatch} onClick={handleClick}>
@@ -54,7 +56,11 @@ const Sketch: React.FC<{
       {displayColorPicker ? (
         <div style={styles.popover}>
           <div style={styles.cover} onClick={handleClose} />
-          <SketchPicker color={color} onChange={handleChange} />
+          <SketchPicker
+            // @ts-ignore
+            color={color}
+            onChange={handleChange}
+          />
         </div>
       ) : null}
     </div>
